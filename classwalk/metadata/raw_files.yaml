@@ -1,0 +1,148 @@
+
+coicop1999:
+  url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/COICOP_english_structure.txt
+  read_function: read_tsv
+
+coicop1999_ir:
+  url: https://old.sci.org.ir/Portals/0/faradade/tabaghebandi/COICOP_2000.xlsx
+
+coicop1999_to_cpc1:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/CPC/COICOP-CPCv10/COICOP-CPC.xls
+
+
+coicop2018:
+  url: https://unstats.un.org/unsd/classifications/Econ/Download/COICOP_2018_English_structure.xlsx
+
+coicop2018_ir:
+  url: https://old.sci.org.ir/Portals/0/faradade/tabaghebandi/COICOP1401-2018.xlsx
+  read_options:
+    skiprows: 1
+
+coicop2018_to_coicop1999:
+  url: https://unstats.un.org/unsd/classifications/Econ/Download/COICOP2018_COICOP1999_correspondence_table_final.xlsx
+  read_options:
+    sheet_name: Correspondence 2018-1999
+
+
+cpc1:
+  url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/CPC_V1_0_English_structure.txt
+  read_options:
+    names: [Code, Description]
+
+cpc1_to_cpc11:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/CPC/CPCv10_CPCv11/CPCv10_CPCv11_full.txt
+
+cpc1_to_isic3:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/CPC/CPCv10_ISIC3/CPCV1_0_ISIC_REV_3_correspondence.txt
+
+
+cpc11:
+  url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/CPC_V1_1_english_structure.txt
+
+cpc11_cpc1:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/CPC/CPCv11_CPCv10/CPCv11_CPCv10_full.txt
+
+cpc11_cpc2:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/CPC/CPCv11_CPCv2/CPCv11_CPCv2.txt
+
+
+cpc2:
+  url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/CPC_Ver_2_english_structure.txt
+
+cpc2_to_cpc21:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/CPC/CPCv2_CPCv21/cpc2-cpc21.txt
+
+
+cpc21:
+  url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/CPC_Ver_2_1_english_structure.txt
+
+
+isic3:
+  url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/ISIC_Rev_3_english_structure.txt
+  read_function: read_tsv
+
+isic3_isic2:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/ISIC/ISIC3_ISIC2/ISIC3-ISIC2.txt
+
+isic3_isic31:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/ISIC/ISIC3_ISIC31/ISIC_Rev_3-ISIC_Rev_3_1_correspondence.txt
+
+
+isic31:
+  url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/ISIC_Rev_3_1_english_structure.txt
+
+isic31_ir:
+  url: https://old.sci.org.ir/Portals/0/faradade/tabaghebandi/ISIC3.1.xlsx
+  read_options:
+    skiprows: 1
+
+isic31_to_cpc11:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/CPC/CPCv11_ISIC31/ISIC31-CPC11-correspondence.txt
+
+isic31_to_isic4:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/ISIC/ISIC31_ISIC4/ISIC31_ISIC4.txt
+
+
+isic4:
+  url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/ISIC_Rev_4_english_structure.Txt
+
+isic4_ir:
+  url: https://old.sci.org.ir/Portals/0/faradade/tabaghebandi/ISIC-4_1399.xlsx
+  read_options:
+    skiprows: 4
+
+isic4_to_isic31:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/ISIC/ISIC4_ISIC31/ISIC4_ISIC31.txt
+
+isic4_to_isic5:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/ISIC/ISIC_Rev4_to_ISIC_Rev5_Correspondence_Table-17Jan2025.xlsx
+
+isic4_to_cpc2:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/ISIC/ISIC4_CPC2/ISIC4-CPC2.txt
+
+isic4_to_cpc21:
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/ISIC/ISIC4_CPCv21/isic4-cpc21.txt
+
+
+cpa2008:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FCPA2008_Structure_Notes_EN.xlsx&ctx_project=ESTAT_Statistical_classification_of_products_by_activity%2C_2008_(CPA_2008)&
+
+cpa2008_cpa21:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FCPA2008_CPA2.1_Table.xlsx&ctx_project=ESTAT_Statistical_classification_of_products_by_activity%2C_2008_(CPA_2008)&
+
+cpa2008_to_ecoicop:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FCPA2008_ECOICOP_Table.xlsx&ctx_project=ESTAT_Statistical_classification_of_products_by_activity%2C_2008_(CPA_2008)&
+
+
+cpa21:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FCPA2.1_Structure_Notes_EN.xlsx&ctx_project=ESTAT_Statistical_classification_of_products_by_activity%2C_2.1_(CPA_2.1)&
+
+
+ecoicop:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FECOICOP_Structure_Labels.xlsx&ctx_project=ESTAT_European_Classification_of_Individual_Consumption_according_to_Purpose_(ECOICOP)&
+
+ecoicop_to_ecoicop2:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Download/getFile?fileName=ECOICOP%20ver.%201-ECOICOP%20ver.%202%20correspondence%20table_v1.00.xlsx&ctx_project=ESTAT_European_Classification_of_Individual_Consumption_according_to_Purpose_(ECOICOP)&
+
+ecoicop_to_cpa2008:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FECOICOP_CPA2008_Table.xlsx&ctx_project=ESTAT_European_Classification_of_Individual_Consumption_according_to_Purpose_(ECOICOP)&
+
+ecoicop_to_cpa21:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FECOICOP_CPA2.1_Table.xlsx&ctx_project=ESTAT_European_Classification_of_Individual_Consumption_according_to_Purpose_(ECOICOP)&
+
+
+ecoicop:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Download/getFile?fileName=ECOICOP2_Structure.xlsx&ctx_project=ESTAT_European_Classification_of_Individual_Consumption_according_to_Purpose_version_2_(ECOICOP_2)&
+
+ecoicop2_to_ecoicop:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Download/getFile?fileName=ECOICOP%20ver.%201-ECOICOP%20ver.%202%20correspondence%20table_v1.00.xlsx&ctx_project=ESTAT_European_Classification_of_Individual_Consumption_according_to_Purpose_version_2_(ECOICOP_2)&
+
+
+nace2:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FNACE_Rev2_Structure_Explanatory_Notes_EN.xlsx&ctx_project=ESTAT_Statistical_Classification_of_Economic_Activities_in_the_European_Community_Rev._2&
+
+nace2_to_cpa2008:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FNACERev2_CPA2008_Table.xlsx&ctx_project=ESTAT_Statistical_Classification_of_Economic_Activities_in_the_European_Community_Rev._2&
+
+nace2_to_isic4:
+  url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FNACERev2_ISIC4_Table.xlsx&ctx_project=ESTAT_Statistical_Classification_of_Economic_Activities_in_the_European_Community_Rev._2&
