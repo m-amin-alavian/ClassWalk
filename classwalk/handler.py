@@ -15,10 +15,10 @@ def download(name: str) -> None:
     response = requests.get(url)
     assert response.status_code == 200
 
-    suffix = "." + url.rsplit(".", 1)[-1]
+    suffix = "." + url.rsplit(".", 1)[-1].lower()
     if suffix not in SUFFIX_LIST:
         for s in SUFFIX_LIST:
-            if s in url:
+            if s in url.lower():
                 suffix = s
     if suffix not in SUFFIX_LIST:
         raise ValueError
