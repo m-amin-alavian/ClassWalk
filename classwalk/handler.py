@@ -52,14 +52,26 @@ def open_raw_table(name: str) -> pd.DataFrame:
     return table
 
 
-def open_cleaned_table(name: str) -> pd.DataFrame:
-    return (
+def open_cleaned_table(
+    name: str,
+    add_alpha_code: bool = False
+) -> pd.DataFrame:
+    table = (
         open_raw_table(name)
         .pipe(getattr(cleaner, name))
     )
+    if add_alpha_code:
+        table["Alpha_Code"] = create_alpha_code(table["Code"])
+    return table
+
 
 
 def get_files() -> dict[str, Path]:
     return {
         file.stem: file for file in settings.data_directory.iterdir()
     }
+
+
+def create_alpha_code(column: pd.Series) -> pd.Series:
+    filt = column.str.contains("[A-Z]")
+    return column.where(filt, None).ffill() + column.where(-filt, "")

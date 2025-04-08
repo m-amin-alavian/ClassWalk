@@ -71,16 +71,19 @@ isic3_isic31:
 isic31:
   url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/ISIC_Rev_3_1_english_structure.txt
 
-isic31_ir:
-  url: https://old.sci.org.ir/Portals/0/faradade/tabaghebandi/ISIC3.1.xlsx
-  read_options:
-    skiprows: 1
-
 isic31_to_cpc11:
   url: https://unstats.un.org/unsd/classifications/Econ/tables/CPC/CPCv11_ISIC31/ISIC31-CPC11-correspondence.txt
 
 isic31_to_isic4:
   url: https://unstats.un.org/unsd/classifications/Econ/tables/ISIC/ISIC31_ISIC4/ISIC31_ISIC4.txt
+
+isic31_ir:
+  url: https://old.sci.org.ir/Portals/0/faradade/tabaghebandi/ISIC3.1.xlsx
+  read_options:
+    skiprows: 1
+
+isic31_ir_to_isic4_ir:
+  url: https://old.sci.org.ir/Portals/0/faradade/tabaghebandi/ISIC-j_2.xlsx
 
 
 isic4:
