@@ -99,5 +99,36 @@ def _add_missing_level4_items(table: pd.DataFrame) -> pd.DataFrame:
             missing_level4_items,
         ],
     )
-    table = table.sort_index()
+    table = table.sort_index().reset_index(drop=True)
+    return table
+
+def isic31_ir_to_isic4_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
+    table = (
+        raw_table
+        .iloc[7:-66, 2:]
+        .set_axis(["Description", "ISIC31", "ISIC4"], axis="columns")
+
+    )
+    table["Description"] = text_utils.clean_farsi_text(table["Description"])
+    filt = table["Description"].isna()
+    table.loc[filt.shift(-1, fill_value=False), "ISIC31"] = table.loc[filt, "ISIC31"].to_list()
+    table = table.dropna(subset="Description")
+    isic_4 = (
+        table["ISIC4"]
+        .astype(str)
+        .str.extractall("(?:(\\d)/)?(\\d{3,4})-?\\d?(\\d)?")
+        .assign(ISIC4_Code=lambda df: df[1] + df[0].fillna(df[2]).fillna(""))
+        .loc[:, "ISIC4_Code"]
+        .str.pad(4, fillchar="0")
+        .droplevel(-1)
+    )
+    isic_31 = (
+        table["ISIC31"]
+        .astype(str)
+        .str.extract("(\\d{3,4})").loc[:, 0].str.pad(4, fillchar="0")
+        .rename("ISIC31_Code")
+    )
+    table = table.join(isic_31).join(isic_4)
+
+    table = table.loc[:, ["Description", "ISIC31_Code", "ISIC4_Code"]]
     return table
