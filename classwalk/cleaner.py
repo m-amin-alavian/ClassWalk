@@ -20,9 +20,21 @@ def isic31(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def isic31_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
+    ad_hoc_cases = pd.DataFrame(
+        data=[
+            {"Code": "6603", "Description": "بیمه غیر از بیمه عمر"}
+        ]
+    )
     return (
-        raw_table
-        .set_axis(["Code", "Description"], axis="columns")
+        pd.concat(
+            [
+                raw_table.set_axis(["Code", "Description"], axis="columns"),
+                ad_hoc_cases,
+            ],
+        )
+        .assign(
+            Code=lambda df: df["Code"].replace({"5224": "5524"})
+        )
         .assign(
             Code=lambda df: df["Code"].str.strip(),
 
@@ -116,10 +128,17 @@ def isic31_ir_to_isic4_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
     isic_4 = (
         table["ISIC4"]
         .astype(str)
+        .str.replace("00:00:00", "", regex=False)
+        .str.replace("\\s", "", regex=True)
         .str.extractall("(?:(\\d)/)?(\\d{3,4})-?\\d?(\\d)?")
-        .assign(ISIC4_Code=lambda df: df[1] + df[0].fillna(df[2]).fillna(""))
+        .loc[lambda df: df[1].notna()]
+        .assign(
+            ISIC4_Code=lambda df:
+            df[1].str.pad(4, fillchar="0") +
+            df[0].fillna(df[2]).fillna("")
+        )
         .loc[:, "ISIC4_Code"]
-        .str.pad(4, fillchar="0")
+        .str.pad(5, "right", fillchar="0")
         .droplevel(-1)
     )
     isic_31 = (
@@ -128,7 +147,21 @@ def isic31_ir_to_isic4_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
         .str.extract("(\\d{3,4})").loc[:, 0].str.pad(4, fillchar="0")
         .rename("ISIC31_Code")
     )
-    table = table.join(isic_31).join(isic_4)
+    table = (
+        table.join(isic_31).join(isic_4)
+        .loc[:, ["Description", "ISIC31_Code", "ISIC4_Code"]]
+        .assign(
+            ISIC4_Code = lambda df: df["ISIC4_Code"].replace(
+                {
+                    "74212": "47212",
+                    "78100": "78000",
+                    "78200": "78000",
+                    "78300": "78000",
+                }
+            )
+        )
+        .drop_duplicates()
+        .reset_index(drop=True)
+    )
 
-    table = table.loc[:, ["Description", "ISIC31_Code", "ISIC4_Code"]]
     return table
