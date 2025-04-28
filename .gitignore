@@ -9,8 +9,12 @@ wheels/
 # Virtual environments
 .venv
 
+# Visual studio
+.vscode
+
 # Jupyter Notebooks
 *.ipynb
 
 # Files
 Data
+*.xlsx

@@ -42,7 +42,7 @@ cpc11:
 cpc11_cpc1:
   url: https://unstats.un.org/unsd/classifications/Econ/tables/CPC/CPCv11_CPCv10/CPCv11_CPCv10_full.txt
 
-cpc11_cpc2:
+cpc11_to_cpc2:
   url: https://unstats.un.org/unsd/classifications/Econ/tables/CPC/CPCv11_CPCv2/CPCv11_CPCv2.txt
 
 

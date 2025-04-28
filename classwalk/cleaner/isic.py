@@ -1,6 +1,6 @@
 import pandas as pd
 
-from .utils import text_utils
+from ..utils import text_utils
 
 
 def isic3(raw_table: pd.DataFrame) -> pd.DataFrame:
@@ -67,6 +67,21 @@ def isic4(raw_table: pd.DataFrame) -> pd.DataFrame:
     )
 
 
+def isic4_to_cpc2(raw_table: pd.DataFrame) -> pd.DataFrame:
+    return (
+        raw_table
+        .rename(
+            columns={
+                "ISIC4code": "ISIC4_Code",
+                "CPC2code": "CPC2_Code",
+            }
+        )
+        .loc[:, ["ISIC4_Code", "CPC2_Code"]]
+        .replace("0", None)
+        .dropna()
+    )
+
+
 def isic4_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
     return (
         raw_table
@@ -113,6 +128,7 @@ def _add_missing_level4_items(table: pd.DataFrame) -> pd.DataFrame:
     )
     table = table.sort_index().reset_index(drop=True)
     return table
+
 
 def isic31_ir_to_isic4_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
     table = (

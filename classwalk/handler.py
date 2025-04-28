@@ -28,6 +28,7 @@ def download(name: str) -> None:
 
 
 def open_raw_table(name: str) -> pd.DataFrame:
+    name = name.lower()
     files = get_files()
     if not name in files:
         download(name)
