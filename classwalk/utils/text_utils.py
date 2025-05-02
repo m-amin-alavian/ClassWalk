@@ -25,6 +25,16 @@ FA_TO_EN_ALPHABET = {
     "ع": "U",
 }
 
+INVISIBLE_CHARS = [
+    chr(173),
+    chr(8203),
+    chr(8206),
+    chr(8207),
+    chr(8236),
+    chr(8234),
+    chr(65279)
+]
+
 
 def clean_farsi_text(column: pd.Series) -> pd.Series:
     for to_replace in [
@@ -39,6 +49,8 @@ def clean_farsi_text(column: pd.Series) -> pd.Series:
         (chr(1577), chr(1607)), # ة -> ه
     ]:
         column = column.str.replace(*to_replace)
+    for character in INVISIBLE_CHARS:
+        column = column.str.replace(character, chr(8204))
     return column
 
 
