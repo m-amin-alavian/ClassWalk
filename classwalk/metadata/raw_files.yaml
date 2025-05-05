@@ -39,7 +39,7 @@ cpc1_to_isic3:
 cpc11:
   url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/CPC_V1_1_english_structure.txt
 
-cpc11_cpc1:
+cpc11_to_cpc1:
   url: https://unstats.un.org/unsd/classifications/Econ/tables/CPC/CPCv11_CPCv10/CPCv11_CPCv10_full.txt
 
 cpc11_to_cpc2:
@@ -61,10 +61,10 @@ isic3:
   url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/ISIC_Rev_3_english_structure.txt
   read_function: read_tsv
 
-isic3_isic2:
+isic3_to_isic2:
   url: https://unstats.un.org/unsd/classifications/Econ/tables/ISIC/ISIC3_ISIC2/ISIC3-ISIC2.txt
 
-isic3_isic31:
+isic3_to_isic31:
   url: https://unstats.un.org/unsd/classifications/Econ/tables/ISIC/ISIC3_ISIC31/ISIC_Rev_3-ISIC_Rev_3_1_correspondence.txt
 
 
@@ -110,7 +110,7 @@ isic4_to_cpc21:
 cpa2008:
   url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FCPA2008_Structure_Notes_EN.xlsx&ctx_project=ESTAT_Statistical_classification_of_products_by_activity%2C_2008_(CPA_2008)&
 
-cpa2008_cpa21:
+cpa2008_to_cpa21:
   url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FCPA2008_CPA2.1_Table.xlsx&ctx_project=ESTAT_Statistical_classification_of_products_by_activity%2C_2008_(CPA_2008)&
 
 cpa2008_to_ecoicop:

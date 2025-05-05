@@ -37,4 +37,5 @@ def coicop2018_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
             Description=lambda df: text_utils.clean_farsi_text(df["Description"]),
         )
         .drop_duplicates("Code")
+        .reset_index(drop=True)
     )

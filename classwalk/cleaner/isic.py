@@ -52,6 +52,20 @@ def isic31_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
     )
 
 
+def isic3_to_isic31(raw_table: pd.DataFrame) -> pd.DataFrame:
+    return (
+        raw_table
+        .rename(
+            columns={
+                "Activity": "Description",
+                "Rev3": "ISIC3_Code",
+                "Rev31": "ISIC31_Code",
+            }
+        )
+        .loc[:, ["Description", "ISIC3_Code", "ISIC31_Code"]]
+    )
+
+
 def isic31_to_isic4(raw_table: pd.DataFrame) -> pd.DataFrame:
     return (
         raw_table
