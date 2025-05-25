@@ -20,10 +20,16 @@ def isic31(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def isic31_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
+
+    index = raw_table[raw_table.columns[0]].loc[lambda i: i.eq("6602")].index[-1]
+    assert not isinstance(index, tuple)
+    index = float(index) + 0.5
+
     ad_hoc_cases = pd.DataFrame(
         data=[
             {"Code": "6603", "Description": "بیمه غیر از بیمه عمر"}
-        ]
+        ],
+        index=[index]
     )
     return (
         pd.concat(
@@ -134,12 +140,13 @@ def _add_missing_level4_items(table: pd.DataFrame) -> pd.DataFrame:
         )
     )
     missing_level4_items.index = missing_level4_items.index - 0.5
-    table = pd.concat(
-        [
-            table,
-            missing_level4_items,
-        ],
-    )
+    if not missing_level4_items.empty:
+        table = pd.concat(
+            [
+                table,
+                missing_level4_items,
+            ],
+        )
     table = table.sort_index().reset_index(drop=True)
     return table
 
