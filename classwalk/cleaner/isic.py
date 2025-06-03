@@ -1,9 +1,26 @@
+"""
+ISIC cleaning and mapping functions for various ISIC revisions and Iranian adaptations.
+"""
+
 import pandas as pd
 
 from ..utils import text_utils
 
 
 def isic3(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean ISIC Rev.3 table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     return (
         raw_table
         .assign(Level = lambda df: df["Code"].str.len())
@@ -11,6 +28,19 @@ def isic3(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def isic31(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean ISIC Rev.3.1 table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     return (
         raw_table
         .assign(
@@ -20,11 +50,22 @@ def isic31(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def isic31_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean Iranian ISIC Rev.3.1 table.
 
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     index = raw_table[raw_table.columns[0]].loc[lambda i: i.eq("6602")].index[-1]
     assert not isinstance(index, tuple)
     index = float(index) + 0.5
-
     ad_hoc_cases = pd.DataFrame(
         data=[
             {"Code": "6603", "Description": "بیمه غیر از بیمه عمر"}
@@ -59,6 +100,19 @@ def isic31_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def isic3_to_isic31(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean ISIC Rev.3 to ISIC Rev.3.1 correspondence table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     return (
         raw_table
         .rename(
@@ -73,6 +127,19 @@ def isic3_to_isic31(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def isic31_to_isic4(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean ISIC Rev.3.1 to ISIC Rev.4 correspondence table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     return (
         raw_table
         .rename(columns={"ISIC31code": "ISIC31_Code", "ISIC4code": "ISIC4_Code"})
@@ -81,6 +148,19 @@ def isic31_to_isic4(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def isic4(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean ISIC Rev.4 table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     return (
         raw_table
         .assign(Level = lambda df: df["Code"].str.len())
@@ -88,6 +168,19 @@ def isic4(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def isic4_to_cpc2(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean ISIC Rev.4 to CPC2 correspondence table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     return (
         raw_table
         .rename(
@@ -103,6 +196,19 @@ def isic4_to_cpc2(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def isic4_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean Iranian ISIC Rev.4 table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     return (
         raw_table
         .set_axis(["Code", "Description"], axis="columns")
@@ -127,6 +233,19 @@ def isic4_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def _add_missing_level4_items(table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Add missing level 4 items to table.
+
+    Parameters
+    ----------
+    table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Table with missing items added.
+    """
     missing_level4_codes = (
         table.loc[lambda df: df["Level"].eq(5)]["Code"]
         .str.slice(0, -1)
@@ -152,6 +271,19 @@ def _add_missing_level4_items(table: pd.DataFrame) -> pd.DataFrame:
 
 
 def isic31_ir_to_isic4_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean Iranian ISIC Rev.3.1 to ISIC Rev.4 correspondence table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input mapping table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned mapping table.
+    """
     table = (
         raw_table
         .iloc[7:-66, 2:]

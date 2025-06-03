@@ -1,9 +1,26 @@
+"""
+COICOP cleaning and mapping functions for various COICOP versions and Iranian adaptations.
+"""
+
 import pandas as pd
 
 from ..utils import text_utils
 
 
 def coicop1999_to_cpc1(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean COICOP 1999 to CPC1 correspondence table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     return (
         raw_table
         .rename(
@@ -17,6 +34,19 @@ def coicop1999_to_cpc1(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def coicop2018(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean COICOP 2018 table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     return (
         raw_table
         .rename(columns={"code": "Code", "title": "Description"})
@@ -28,6 +58,19 @@ def coicop2018(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def coicop2018_ir(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean Iranian COICOP 2018 table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     return (
         raw_table
         .set_axis(["Code", "Description"], axis="columns")

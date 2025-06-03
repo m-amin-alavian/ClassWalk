@@ -1,7 +1,24 @@
+"""
+CPC cleaning and mapping functions for various CPC versions.
+"""
+
 import pandas as pd
 
 
 def cpc1_to_cpc11(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean CPC1 to CPC11 correspondence table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     return (
         raw_table
         .rename(
@@ -15,6 +32,19 @@ def cpc1_to_cpc11(raw_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def cpc11_to_cpc2(raw_table: pd.DataFrame) -> pd.DataFrame:
+    """
+    Clean CPC11 to CPC2 correspondence table.
+
+    Parameters
+    ----------
+    raw_table : pd.DataFrame
+        Input table.
+
+    Returns
+    -------
+    pd.DataFrame
+        Cleaned table.
+    """
     return (
         raw_table
         .rename(
