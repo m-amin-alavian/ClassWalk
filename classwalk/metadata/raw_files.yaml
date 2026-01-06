@@ -107,6 +107,27 @@ isic4_to_cpc21:
   url: https://unstats.un.org/unsd/classifications/Econ/tables/ISIC/ISIC4_CPCv21/isic4-cpc21.txt
 
 
+isco08:
+  url: https://www.ilo.org/ilostat-files/ISCO/newdocs-08-2021/ISCO-08/ISCO-08%20EN%20Structure%20and%20definitions.xlsx
+
+isco88:
+  url: https://www.ilo.org/ilostat-files/ISCO/newdocs-08-2021/Previous%20versions%20of%20ISCO/ISCO-88/ISCO-88%20EN%20Structure%20and%20defnitions.xlsx
+
+isco08_ir:
+  url: https://amar.org.ir/Portals/0/Statistics/ISCO_1402_tabestan-14040623104354.xlsx
+
+isco88_ir:
+  url: https://old.sci.org.ir/Portals/0/faradade/tabaghebandi/ISCO88.xlsx
+
+isco08_to_isco88_ir:
+  url: https://amar.org.ir/Portals/0/faradade/tabaghabandi/ISCO6.xlsx
+
+isco88_to_isco08_ir:
+  url: https://amar.org.ir/Portals/0/faradade/tabaghabandi/ISCO7.xlsx
+  read_options:
+    skiprows: 6
+    usecols: [1, 2, 3, 4]
+
 cpa2008:
   url: https://showvoc.op.europa.eu/semanticturkey/it.uniroma2.art.semanticturkey/st-core-services/Storage/getFile?path=proj%3A%2Fdownload%2FCPA2008_Structure_Notes_EN.xlsx&ctx_project=ESTAT_Statistical_classification_of_products_by_activity%2C_2008_(CPA_2008)&
 

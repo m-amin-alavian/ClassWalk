@@ -52,7 +52,15 @@ def download(name: str) -> None:
         If the file suffix cannot be determined.
     """
     url = metadata.raw_files[name]["url"]
-    response = requests.get(url)
+    response = requests.get(
+        url,
+        headers={
+            "user-agent":
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/142.0.0.0 Safari/537.36",
+        }
+    )
     if response.status_code != 200:
         raise RuntimeError(f"Failed to download {url}: {response.status_code}")
 
@@ -94,7 +102,7 @@ def open_raw_table(name: str) -> pd.DataFrame:
     """
     name = name.lower()
     files = get_files()
-    if not name in files:
+    if name not in files:
         download(name)
         files = get_files()
 
@@ -141,7 +149,10 @@ def open_cleaned_table(
     pandas.DataFrame
         The cleaned data table.
     """
-    table = open_raw_table(name).pipe(getattr(cleaner, name))
+    table = (
+        open_raw_table(name)
+        .pipe(getattr(cleaner, name.lower()))
+    )
     if add_alpha_code:
         table["Alpha_Code"] = create_alpha_code(table["Code"])
     return table

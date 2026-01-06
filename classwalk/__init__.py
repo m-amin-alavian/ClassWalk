@@ -5,7 +5,7 @@ import pandas as pd
 from .handler import open_raw_table, open_cleaned_table
 
 
-_Form = Literal["Raw", "Cleaned"]
+_Form = Literal["raw", "cleaned"]
 
 
 _Classification = Literal[
@@ -56,11 +56,13 @@ _Classification = Literal[
 
 def open_classification_table(
     name: _Classification,
-    form: _Form,
+    form: _Form = "cleaned",
     **kwargs,
 ) -> pd.DataFrame:
-    name = name.lower()
-    if form == "Cleaned":
-        open_cleaned_table(name, **kwargs)
-    elif form == "Raw":
-        open_raw_table(name, **kwargs)
+    normalized_name = name.lower()
+    normalized_form = form.lower()
+    if normalized_form == "cleaned":
+        table = open_cleaned_table(normalized_name, **kwargs)
+    elif normalized_form == "raw":
+        table = open_raw_table(normalized_name, **kwargs)
+    return table
